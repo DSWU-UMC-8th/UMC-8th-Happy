@@ -4,8 +4,6 @@ import com.dna.umc_springboot.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import static com.dna.umc_springboot.domain.QRegion.region;
-
 @Entity
 @Getter
 @Builder

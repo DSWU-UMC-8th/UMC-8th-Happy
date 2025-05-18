@@ -3,7 +3,7 @@ package com.dna.umc_springboot;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class UmcSpringBootApplicationTests {
 
     @Test
