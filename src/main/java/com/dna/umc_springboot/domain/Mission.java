@@ -1,14 +1,8 @@
 package com.dna.umc_springboot.domain;
 
-
 import com.dna.umc_springboot.domain.common.BaseEntity;
-import com.dna.umc_springboot.domain.mapping.MemberMission;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -21,16 +15,49 @@ public class Mission extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer reward;
+    private String content;
 
-    private LocalDate deadline;
-
-    private String missionSpec;
+    private Integer point;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;
-
-    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
-    private List<MemberMission> memberMissionList = new ArrayList<>();
 }
+
+
+//package com.dna.umc_springboot.domain;
+//
+//
+//import com.dna.umc_springboot.domain.common.BaseEntity;
+//import com.dna.umc_springboot.domain.mapping.MemberMission;
+//import jakarta.persistence.*;
+//import lombok.*;
+//
+//import java.time.LocalDate;
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//@Entity
+//@Getter
+//@Builder
+//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+//@AllArgsConstructor
+//public class Mission extends BaseEntity {
+//
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+//
+//    private Integer reward;
+//
+//    private LocalDate deadline;
+//
+//    private String missionSpec;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "store_id")
+//    private Store store;
+//
+//    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
+//    private List<MemberMission> memberMissionList = new ArrayList<>();
+//}
