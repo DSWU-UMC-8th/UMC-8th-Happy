@@ -7,11 +7,9 @@ import com.dna.umc_springboot.converter.StoreConverter;
 import com.dna.umc_springboot.domain.Store;
 import com.dna.umc_springboot.service.StoreService.StoreService;
 import jakarta.validation.Valid;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,4 +23,5 @@ public class StoreController {
         Store store = storeService.createStore(dto);
         return ApiResponse.onSuccess(StoreConverter.toResultDTO(store));
     }
+
 }

@@ -30,5 +30,10 @@ public class MemberMission extends BaseEntity {
     @JoinColumn(name = "mission_id", nullable = false)
     private Mission mission;
 
+    public void setStatus(MissionStatus status) {
+        this.status = status;
+    }
+
+
 
 }

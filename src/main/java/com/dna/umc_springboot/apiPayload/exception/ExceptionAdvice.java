@@ -28,15 +28,30 @@ import java.util.Optional;
 public class ExceptionAdvice extends ResponseEntityExceptionHandler {
 
 
+//    @ExceptionHandler
+//    public ResponseEntity<Object> validation(ConstraintViolationException e, WebRequest request) {
+//        String errorMessage = e.getConstraintViolations().stream()
+//                .map(ConstraintViolation::getMessage)
+//                .findFirst()
+//                .orElseThrow(() -> new RuntimeException("ConstraintViolationException 추출 도중 에러 발생"));
+//
+//        return handleExceptionInternalConstraint(e, ErrorStatus.valueOf(errorMessage), HttpHeaders.EMPTY,request);
+//    }
+
     @ExceptionHandler
     public ResponseEntity<Object> validation(ConstraintViolationException e, WebRequest request) {
-        String errorMessage = e.getConstraintViolations().stream()
+        String message = e.getConstraintViolations().stream()
                 .map(ConstraintViolation::getMessage)
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("ConstraintViolationException 추출 도중 에러 발생"));
+                .orElse("알 수 없는 유효성 검증 오류");
 
-        return handleExceptionInternalConstraint(e, ErrorStatus.valueOf(errorMessage), HttpHeaders.EMPTY,request);
+        if (message.equals(ErrorStatus.PAGE_VALIDATION_ERROR.getMessage())) {
+            return handleExceptionInternalConstraint(e, ErrorStatus.PAGE_VALIDATION_ERROR, HttpHeaders.EMPTY, request);
+        }
+
+        return handleExceptionInternalConstraint(e, ErrorStatus._BAD_REQUEST, HttpHeaders.EMPTY, request);
     }
+
 
     @Override
     public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e, HttpHeaders headers, HttpStatusCode status, WebRequest request) {

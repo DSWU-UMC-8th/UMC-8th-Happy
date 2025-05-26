@@ -27,7 +27,9 @@ public enum ErrorStatus implements BaseErrorCode {
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트"),
 
     // 음식 카테고리 관련 에러
-    FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "CATEGORY4001", "해당 음식 카테고리를 찾을 수 없습니다.");
+    FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "CATEGORY4001", "해당 음식 카테고리를 찾을 수 없습니다."),
+
+    PAGE_VALIDATION_ERROR(HttpStatus.BAD_REQUEST, "PAGE_VALIDATION_ERROR", "page는 1 이상의 숫자여야 합니다.");
 
 
     private final HttpStatus httpStatus;
