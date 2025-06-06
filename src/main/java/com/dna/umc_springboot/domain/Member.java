@@ -3,6 +3,7 @@ package com.dna.umc_springboot.domain;
 import com.dna.umc_springboot.domain.common.BaseEntity;
 import com.dna.umc_springboot.domain.enums.Gender;
 import com.dna.umc_springboot.domain.enums.MemberStatus;
+import com.dna.umc_springboot.domain.enums.Role;
 import com.dna.umc_springboot.domain.enums.SocialType;
 import com.dna.umc_springboot.domain.mapping.MemberAgree;
 import com.dna.umc_springboot.domain.mapping.MemberMission;
@@ -55,8 +56,14 @@ public class Member extends BaseEntity {
 
     private LocalDate inactiveDate;
 
-    //    @Column(nullable = false, length = 50)
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @ColumnDefault("0")
     private Integer point;
@@ -72,4 +79,8 @@ public class Member extends BaseEntity {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberMission> memberMissionList = new ArrayList<>();
+
+    public void encodePassword(String password) {
+        this.password = password;
+    }
 }

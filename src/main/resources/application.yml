@@ -21,3 +21,9 @@ spring:
 server:
   servlet:
     context-path=/:
+
+jwt:
+  token:
+    secretKey: umceightfightingjwttokenauthentication
+    expiration:
+      access: 14400000         #4시간
